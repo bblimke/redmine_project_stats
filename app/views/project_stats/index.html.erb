@@ -1,0 +1,12 @@
+<h2>Stats for project: <%= @project.name %></h2>
+
+Unestimated issues count: <%= @project.unestimated_issues_count(:include_children => @include_children) %>
+<br/>
+Remaining story points: <%= @project.remaining_story_points(:include_children => @include_children) %>
+<br/>
+
+
+Date range:
+<%= h @start_date %> - <%= h @end_date %>
+<br/>
+Points done withing date range: <%= @project.points_done_within(@start_date, @end_date, :include_children => @include_children) %>

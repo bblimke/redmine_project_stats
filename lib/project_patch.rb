@@ -18,7 +18,7 @@ require_dependency 'project'
 
       def not_done_issues(options = {})
         if options[:include_children]
-          self.hierarchy.map{|p| p.not_done_issues_for_this_project}.flatten
+          self.self_and_descendants.map{|p| p.not_done_issues_for_this_project}.flatten
         else
           self.not_done_issues_for_this_project
         end
@@ -36,7 +36,7 @@ require_dependency 'project'
 
       def resolved_issue_changes_within(start_date, end_date, options = {})
         if options[:include_children]
-          self.hierarchy.map {|p| p.resolved_issue_changes_for_this_project_within(start_date, end_date) }.flatten
+          self.self_and_descendants.map {|p| p.resolved_issue_changes_for_this_project_within(start_date, end_date) }.flatten
         else
           self.resolved_issue_changes_for_this_project_within(start_date, end_date)
         end
